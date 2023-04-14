@@ -1,4 +1,4 @@
-import Navbar from './Components/Navbar'
+import { Navbar,Feed,SearchFeed, ChannelDetail, VideoDetail} from './Components'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Box } from '@mui/material';
 
