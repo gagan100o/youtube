@@ -6,13 +6,15 @@ const App = () => {
     return (
 
         <BrowserRouter>
-            <Box sx={{ backgroundColor: '#000' }}>
+            <Box m={-1} sx={{ backgroundColor: '#000' }}>
                 <Navbar />
                 <Routes>
+                    
                     <Route path='/' exact element={<Feed />} />
                     <Route path='/video/:id'  element={<VideoDetail/>} />
                     <Route path='/channel/:id'  element={<ChannelDetail/>} />
                     <Route path='/search/:searchTerm'  element={<SearchFeed/>} />
+                    
                 </Routes>
             </Box>
         </BrowserRouter>

@@ -1,36 +1,75 @@
-import React from "react";
-import { Stack } from "@mui/material";
+import {useState} from 'react'
+import * as React from 'react';
+import ListSubheader from '@mui/material/ListSubheader';
+import List from '@mui/material/List';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import {ico}from '../utils/constants'
+import Icon from '@mdi/react';
+import { mdiMenu, mdiYoutube } from '@mdi/js';
+import { IconButton, Typography } from '@mui/material';
 
-import { categories } from "../utils/constants";
+import {type} from './Feed'
 
-const Categories = ({ selectedCategory, setSelectedCategory }) => (
-  <Stack
-    direction="row"
-    sx={{
-      overflowY: "auto",
-      height: { sx: "auto", md: "95%" },
-      flexDirection: { md: "column" },
-    }}
-  >
-    {categories.map((category) => (
-      <button
-        className="category-btn"
-        onClick={() => setSelectedCategory(category.name)}
-        style={{
-          background: category.name === selectedCategory && "#FC1503",
-          color: "white",
-        }}
-        key={category.name}
-      >
-        <span style={{ color: category.name === selectedCategory ? "white" : "red", marginRight: "15px" }}>
-          {category.icon}
-        </span>
-        <span style={{ opacity: category.name === selectedCategory ? "1" : "0.8" }}>
-          {category.name}
-        </span>
-      </button>
-    ))}
-  </Stack>
-);
+const SideBar = () => {
+ 
+  const [open, setOpen] = React.useState(true);
 
-export default Categories;
+  const [selectedCategory, setSelectedCategory] = useState("New");
+
+
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
+  return (
+    <List
+      sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+      component="nav"
+      aria-labelledby="nested-list-subheader"
+      subheader={
+        <ListSubheader component="div" id="nested-list-subheader">
+           <ListItemButton >
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            sx={{ mr: 2 }} 
+            
+          >
+       <Icon path={mdiMenu} size={1.5}/>
+       </IconButton>
+       
+
+        <Icon path={mdiYoutube} color={'red'} size={1.5} />
+        <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+          >YouTube
+          </Typography>
+          </ListItemButton>
+        </ListSubheader>
+      }
+    > 
+    
+    <div style={{marginTop:"20px"}}>
+       {ico.map((icons)=>(
+      <ListItemButton >
+        <ListItemIcon>
+        {icons.icn}
+        </ListItemIcon>
+        <ListItemText primary={icons.name} />
+      </ListItemButton>
+        ))}
+        </div>
+
+      
+    </List>
+  )
+}
+
+export default SideBar
