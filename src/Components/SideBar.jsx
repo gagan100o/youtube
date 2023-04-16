@@ -1,4 +1,3 @@
-import {useState} from 'react'
 import * as React from 'react';
 import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
@@ -10,19 +9,11 @@ import Icon from '@mdi/react';
 import { mdiMenu, mdiYoutube } from '@mdi/js';
 import { IconButton, Typography } from '@mui/material';
 
-import {type} from './Feed'
+import { Link } from 'react-router-dom';
 
 const SideBar = () => {
  
-  const [open, setOpen] = React.useState(true);
-
-  const [selectedCategory, setSelectedCategory] = useState("New");
-
-
-  const handleClick = () => {
-    setOpen(!open);
-  };
-
+ 
   return (
     <List
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
@@ -37,7 +28,7 @@ const SideBar = () => {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }} 
-            
+           
           >
        <Icon path={mdiMenu} size={1.5}/>
        </IconButton>
@@ -58,12 +49,15 @@ const SideBar = () => {
     
     <div style={{marginTop:"20px"}}>
        {ico.map((icons)=>(
+        <Link to='./'>
       <ListItemButton >
         <ListItemIcon>
         {icons.icn}
         </ListItemIcon>
         <ListItemText primary={icons.name} />
+        
       </ListItemButton>
+      </Link>
         ))}
         </div>
 
